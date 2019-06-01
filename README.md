@@ -153,5 +153,3 @@ Eu como garçom/garçonete quero ver os pedidos que estão prontos para entregá
 * Você fez _testes_ de usabilidade e incorporou o _feedback_ do usuário.
 * Você deu deploy de seu aplicativo e marcou sua versão (tag git).
 * Os dados devem ser mantidos intactos, mesmo depois que um pedido terminado. Tudo isso para poder ter estatísticas no futuro.
-
-***
