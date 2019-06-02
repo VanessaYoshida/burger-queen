@@ -53,12 +53,16 @@ executá-los serão feitos por você.
 ## Necessidades dos Usuários
 
 ## Personas
+![persona](/public/assets/img/persona-renata.png)
+![persona](/public/assets/img/persona-hugo.png)
 
 ## Organização
 
 ## Protótipo
+![Protótipo Burger Queen](https://xd.adobe.com/view/22849aa8-f906-4d2c-6881-aa86234d765d-54b5/?fullscreen)
 
 ## Teste de Usabilidade
+De acordo com o teste, percebi que os usuários encontram facilmente os botões para poder fazer login ou se cadastrar, e fazer um novo pedido ou finalizar um pedido. Pois os botões estão com as tarefas escritas e tem cores diferenciadas para ficar mais fácil de identificá-lo. As tarefas estão fáceis de serem executadas.
 
 ## Objetivos de Aprendizagem
 O objetivo principal é aprender a construir uma interface web usando React. Esse framework front-end ataca o seguinte problema: como manter a interface e estado sincronizados. Portanto, esta experiência espera familiarizá-la com o conceito de estado da tela, e como cada mudança no estado vai refletir na interface (por exemplo, toda vez que adicionamos um produto para um pedido, a interface deve atualizar a lista de pedidos e o total). A interface deve ser projetada especificamente para rodar em tablets.
