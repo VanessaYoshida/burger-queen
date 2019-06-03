@@ -1,8 +1,9 @@
 import React from 'react';
-import Button from '../../ui/Button/Button'
-import firebase from '../../../util/config/firebaseConfig';
+import ButtonDefault from 'components/ui/Buttons/Default'
+import firebase from 'components/util/config/firebaseConfig';
 import withFirebaseAuth from 'react-with-firebase-auth';
-import PasswordMask from 'react-password-mask';
+import OutlinedTextFields from 'components/ui/Form/input';
+import Form from 'react-bootstrap/Form';
 
 const firebaseAppAuth = firebase.auth();
 
@@ -38,15 +39,36 @@ class Login extends React.Component {
       <input value={this.state.email}
       placeholder="E-mail"
       onChange={(e) => this.handleChange(e, "email")} />
-      <PasswordMask
-        id="password"
-        name="password"
-        placeholder="Senha"
-        value={this.state.password}
-        onChange={(e) => this.handleChange(e, "password")}
+      <input
+      id="password"
+      name="password"
+      placeholder="Senha"
+      value={this.state.password}
+      onChange={(e) => this.handleChange(e, "password")}
       />
-      <Button text="Criar usuário" onClick={this.createUser} />
-      <Button text="Entrar" onClick={this.signIn} />
+      <ButtonDefault text="Entrar" onClick={this.createUser}/>
+      <p>Ou</p>
+      <ButtonDefault text="Cadastre-se" onClick={this.signIn}/>
+      
+      
+      <OutlinedTextFields text="E-mail"/>
+      <OutlinedTextFields text="Senha"/>
+      <Form>
+      <Form.Group controlId="formBasicEmail">
+      <Form.Label>Email address</Form.Label>
+      <Form.Control type="email" placeholder="Enter email" />
+      <Form.Text className="text-muted">
+      Digite o seu e-mail cadastrado no Burger Queen.
+      </Form.Text>
+      </Form.Group>
+      <Form.Group controlId="formBasicPassword">
+      <Form.Label>Password</Form.Label>
+      <Form.Control type="password" placeholder="Password" />
+      </Form.Group>
+      <Form.Group controlId="formBasicChecbox">
+      </Form.Group>
+      </Form>
+      
       </div>
       )
     }

@@ -1,7 +1,8 @@
 import React from 'react';
-import Login from '../pages/Login/Login';
+import Login from 'components/pages/Login/Login';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
-import HomeHall from '../pages/Home/Hall';
+import HomeReception from 'components/pages/Home/Reception';
+import OutlinedTextFields from 'components/ui/Form/input'
 
 function App() {
   return (
@@ -9,7 +10,9 @@ function App() {
       <div className="App">
         <header className="App-header">
           <Route path="/" exact component={Login} />
-          <Route path="/HomeHall" exact component={HomeHall} />
+          <Route path="/HomeReception" exact component={HomeReception} />
+          <Route path="/OutlinedTextFields" exact component={OutlinedTextFields} />
+          
         </header>
       </div>
     </Router>

@@ -1,8 +1,7 @@
 import React from 'react';
-import Button from '../../ui/Button/Button'
-import firebase from '../../../util/config/firebaseConfig';
+import Button from 'components/ui/Buttons/Default'
+import firebase from 'util/config/firebaseConfig';
 import withFirebaseAuth from 'react-with-firebase-auth';
-import PasswordMask from 'react-password-mask';
 
 const firebaseAppAuth = firebase.auth();
 
