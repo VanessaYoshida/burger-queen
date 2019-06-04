@@ -26,7 +26,7 @@ function OutlinedTextFields(props) {
     <div className={classes.container} noValidate autoComplete="off" onClick={props.onClick}>
       <TextField
         required
-        id={props.text}
+        type={props.text}
         label={props.text}
         defaultValue=""
         className={classes.textField}

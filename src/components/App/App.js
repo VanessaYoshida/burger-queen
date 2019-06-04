@@ -12,7 +12,6 @@ function App() {
           <Route path="/" exact component={Login} />
           <Route path="/HomeReception" exact component={HomeReception} />
           <Route path="/OutlinedTextFields" exact component={OutlinedTextFields} />
-          
         </header>
       </div>
     </Router>
