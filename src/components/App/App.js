@@ -9,7 +9,7 @@ function App() {
     <Router>
       <div className="App">
         <header className="App-header">
-          <Route path="/" exact component={Login} />
+          <Route path="/" exact component={Login}/>
           <Route path="/HomeReception" exact component={HomeReception} />
           <Route path="/OutlinedTextFields" exact component={OutlinedTextFields} />
         </header>

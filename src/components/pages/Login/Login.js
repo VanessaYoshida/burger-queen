@@ -39,7 +39,7 @@ class Login extends React.Component {
       placeholder="E-mail"
       onChange={(e) => this.handleChange(e, "email")} />
       <OutlinedTextFields text="Senha"
-      text="password"
+      type="password"
       placeholder="Senha"
       value={this.state.password}
       onChange={(e) => this.handleChange(e, "password")}

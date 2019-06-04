@@ -27,18 +27,18 @@ class Login extends React.Component {
   render() {
     return (
       <div>
-      <input value={this.state.email}
-      placeholder="E-mail"
-      onChange={(e) => this.handleChange(e, "email")} />
-      <PasswordMask
-        id="password"
-        name="password"
-        placeholder="Senha"
-        value={this.state.password}
-        onChange={(e) => this.handleChange(e, "password")}
-      />
-      <Button text="criar usuário" onClick={this.createUser} />
-      <Button text="loga com usuario" onClick={this.signIn} />
+        <input value={this.state.email}
+        placeholder="E-mail"
+        onChange={(e) => this.handleChange(e, "email")} />
+        <input
+          id="password"
+          name="password"
+          placeholder="Senha"
+          value={this.state.password}
+          onChange={(e) => this.handleChange(e, "password")}
+        />
+        <Button text="criar usuário" onClick={this.createUser} />
+        <Button text="loga com usuario" onClick={this.signIn} />
       </div>
       )
     }
