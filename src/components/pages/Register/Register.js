@@ -5,7 +5,7 @@ import withFirebaseAuth from 'react-with-firebase-auth';
 
 const firebaseAppAuth = firebase.auth();
 
-class Login extends React.Component {
+class Register extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -46,4 +46,4 @@ class Login extends React.Component {
   
   export default withFirebaseAuth({
     firebaseAppAuth,
-  })(Login);
+  })(Register);

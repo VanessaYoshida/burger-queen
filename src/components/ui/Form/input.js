@@ -21,17 +21,23 @@ const useStyles = makeStyles(theme => ({
 
 function OutlinedTextFields(props) {
   const classes = useStyles();
+  const [values, setValues] = React.useState({
+    name: 'Cat in the Hat',
+    age: '',
+    multiline: 'Controlled',
+    currency: 'EUR',
+  });
 
   return (
-    <div className={classes.container} noValidate autoComplete="off" onClick={props.onClick}>
+    <div className={classes.container} noValidate autoComplete="off">
       <TextField
         required
-        type={props.text}
+        type={props.type}
         label={props.text}
-        defaultValue=""
         className={classes.textField}
         margin="normal"
         variant="outlined"
+        onChange={props.onChange}
       />
     </div>
   );

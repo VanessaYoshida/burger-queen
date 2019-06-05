@@ -26,27 +26,31 @@ class Login extends React.Component {
   }
   
   signIn = () => {
-    this.props.signInWithEmailAndPassword(this.state.email, this.state.password)
+    const { email, password } = this.state;
+    const { signInWithEmailAndPassword, history: { push } } = this.props;
+
+    signInWithEmailAndPassword(email, password)
     .then(() => {
-      alert("uhul");
+      push('/HomeReception')
     });
   }
   
   render() {
+    const { email, password } = this.state;
     return (
       <div>
-      <OutlinedTextFields text="E-mail" value={this.state.email}
+      <OutlinedTextFields text="E-mail" type="text" value={email}
       placeholder="E-mail"
       onChange={(e) => this.handleChange(e, "email")} />
       <OutlinedTextFields text="Senha"
       type="password"
       placeholder="Senha"
-      value={this.state.password}
+      value={password}
       onChange={(e) => this.handleChange(e, "password")}
       />
-      <ButtonDefault text="Entrar" onClick={this.createUser}/>
+      <ButtonDefault text="Entrar"  color="primary" onClick={this.signIn}/>
       <p>Ou</p>
-      <ButtonDefault text="Cadastre-se" onClick={this.signIn}/>
+      <ButtonDefault text="Cadastre-se" color="secondary" onClick={this.createUser}/>
       </div>
       )
     }
