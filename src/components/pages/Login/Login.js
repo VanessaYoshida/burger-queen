@@ -1,8 +1,8 @@
 import React from 'react';
-import Button from '../../ui/Button/Button'
-import firebase from '../../../util/config/firebaseConfig';
+import ButtonDefault from 'components/ui/Buttons/Default'
+import firebase from 'components/util/config/firebaseConfig';
 import withFirebaseAuth from 'react-with-firebase-auth';
-import PasswordMask from 'react-password-mask';
+import OutlinedTextFields from 'components/ui/Form/input';
 
 const firebaseAppAuth = firebase.auth();
 
@@ -26,27 +26,31 @@ class Login extends React.Component {
   }
   
   signIn = () => {
-    this.props.signInWithEmailAndPassword(this.state.email, this.state.password)
+    const { email, password } = this.state;
+    const { signInWithEmailAndPassword, history: { push } } = this.props;
+
+    signInWithEmailAndPassword(email, password)
     .then(() => {
-      alert("uhul");
+      push('/HomeReception')
     });
   }
   
   render() {
+    const { email, password } = this.state;
     return (
       <div>
-      <input value={this.state.email}
+      <OutlinedTextFields text="E-mail" type="text" value={email}
       placeholder="E-mail"
       onChange={(e) => this.handleChange(e, "email")} />
-      <PasswordMask
-        id="password"
-        name="password"
-        placeholder="Senha"
-        value={this.state.password}
-        onChange={(e) => this.handleChange(e, "password")}
+      <OutlinedTextFields text="Senha"
+      type="password"
+      placeholder="Senha"
+      value={password}
+      onChange={(e) => this.handleChange(e, "password")}
       />
-      <Button text="Criar usuário" onClick={this.createUser} />
-      <Button text="Entrar" onClick={this.signIn} />
+      <ButtonDefault text="Entrar"  color="primary" onClick={this.signIn}/>
+      <p>Ou</p>
+      <ButtonDefault text="Cadastre-se" color="secondary" onClick={this.createUser}/>
       </div>
       )
     }

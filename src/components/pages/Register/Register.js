@@ -1,12 +1,11 @@
 import React from 'react';
-import Button from '../../ui/Button/Button'
-import firebase from '../../../util/config/firebaseConfig';
+import Button from 'components/ui/Buttons/Default'
+import firebase from 'util/config/firebaseConfig';
 import withFirebaseAuth from 'react-with-firebase-auth';
-import PasswordMask from 'react-password-mask';
 
 const firebaseAppAuth = firebase.auth();
 
-class Login extends React.Component {
+class Register extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -28,18 +27,18 @@ class Login extends React.Component {
   render() {
     return (
       <div>
-      <input value={this.state.email}
-      placeholder="E-mail"
-      onChange={(e) => this.handleChange(e, "email")} />
-      <PasswordMask
-        id="password"
-        name="password"
-        placeholder="Senha"
-        value={this.state.password}
-        onChange={(e) => this.handleChange(e, "password")}
-      />
-      <Button text="criar usuário" onClick={this.createUser} />
-      <Button text="loga com usuario" onClick={this.signIn} />
+        <input value={this.state.email}
+        placeholder="E-mail"
+        onChange={(e) => this.handleChange(e, "email")} />
+        <input
+          id="password"
+          name="password"
+          placeholder="Senha"
+          value={this.state.password}
+          onChange={(e) => this.handleChange(e, "password")}
+        />
+        <Button text="criar usuário" onClick={this.createUser} />
+        <Button text="loga com usuario" onClick={this.signIn} />
       </div>
       )
     }
@@ -47,4 +46,4 @@ class Login extends React.Component {
   
   export default withFirebaseAuth({
     firebaseAppAuth,
-  })(Login);
+  })(Register);

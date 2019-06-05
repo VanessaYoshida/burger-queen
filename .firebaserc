@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "burger-queen"
+    "default": "burger-queen-eba7f",
+    "van": "burger-queen-eba7f"
   }
 }
