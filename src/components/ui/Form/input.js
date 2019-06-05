@@ -21,12 +21,6 @@ const useStyles = makeStyles(theme => ({
 
 function OutlinedTextFields(props) {
   const classes = useStyles();
-  const [values, setValues] = React.useState({
-    name: 'Cat in the Hat',
-    age: '',
-    multiline: 'Controlled',
-    currency: 'EUR',
-  });
 
   return (
     <div className={classes.container} noValidate autoComplete="off">
