@@ -1,5 +1,5 @@
 import React from 'react';
-import ButtonDefault from 'components/ui/Buttons/Default'
+import ButtonDefault from 'components/ui/Buttons/Default';
 import firebase from 'components/util/config/firebaseConfig';
 import withFirebaseAuth from 'react-with-firebase-auth';
 import OutlinedTextFields from 'components/ui/Form/input';
