@@ -7,13 +7,12 @@ import OutlinedTextFields from 'components/ui/Form/input';
 const firebaseAppAuth = firebase.auth();
 const database = firebase.firestore();
 
-class App extends React.Component {
+class Register extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       email: "",
-      password: "",
-      name: "",
+      displayName: "",
       lastName: "",
       dateOfBirth: "",
       typeUser: "",
@@ -29,25 +28,39 @@ class App extends React.Component {
       });
   }
   
-  handleClick = () => {
-    const object = {
-      banana: this.state.banana,
-      peixinho: this.state.peixinho
+    handleChange = (event, element) => {
+      const newState = this.state;
+      newState[element] = event.target.value
+      this.setState(newState);
     }
-    database.collection('laboratoria').add(object)
+    
+  handleClick = () => {
+    const user = {
+      email: this.state.email,
+      displayName: this.state.displayName,
+      lastName: this.state.lastName,
+      dateOfBirth: this.state.dateOfBirth,
+      typeUser: this.state.typeUser
+    }
+    database.collection('users').add(user)
     this.setState({
-      listItem: this.state.listItem.concat(object)
+      listItem: this.state.listItem.concat(user)
     })
   }
-  
-  handleChange = (event, element) => {
-    const newState = this.state;
-    newState[element] = event.target.value
-    this.setState(newState);
-  }
-  
+
   createUser = () => {
-    this.props.createUserWithEmailAndPassword(this.state.email, this.state.password);
+    this.props.createUserWithEmailAndPassword(this.state.email, this.state.password)
+    .then((response) => { 
+      console.log(response);
+      database.doc(`user/${response.user.uid}`)
+      .set({
+        email: this.state.email,
+        displayName: this.state.displayName,
+        lastName: this.state.lastName,
+        dateOfBirth: this.state.dateOfBirth,
+        typeUser: this.state.typeUser
+      });
+  })
   }
 
   signIn = () => {
@@ -69,8 +82,8 @@ class App extends React.Component {
         <OutlinedTextFields text="password" type="password" value={this.state.password}
           onChange={(e) => this.handleChange(e, "password")}
         />
-        <OutlinedTextFields text="Nome" type="text" value={this.state.name}
-          onChange={(e) => this.handleChange(e, "name")} 
+        <OutlinedTextFields text="Nome" type="text" value={this.state.displayName}
+          onChange={(e) => this.handleChange(e, "displayName")} 
         />
         <OutlinedTextFields text="Sobrenome" type="text" value={this.state.lastName}
           onChange={(e) => this.handleChange(e, "lastName")} 
@@ -89,4 +102,4 @@ class App extends React.Component {
   
   export default withFirebaseAuth({
     firebaseAppAuth,
-  })(App);
+  })(Register);
