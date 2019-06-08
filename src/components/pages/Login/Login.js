@@ -3,6 +3,7 @@ import ButtonDefault from 'components/ui/Buttons/Default';
 import firebase from 'components/util/config/firebaseConfig';
 import withFirebaseAuth from 'react-with-firebase-auth';
 import OutlinedTextFields from 'components/ui/Form/input';
+import { Link } from 'react-router-dom'
 
 const firebaseAppAuth = firebase.auth();
 
@@ -21,20 +22,16 @@ class Login extends React.Component {
     this.setState(newState);
   }
   
-  createUser = () => {
-    this.props.createUserWithEmailAndPassword(this.state.email, this.state.password);
-  }
-  
   signIn = () => {
     const { email, password } = this.state;
-    const { signInWithEmailAndPassword, history: { push } } = this.props;
+    const { history: { push } } = this.props;
 
-    signInWithEmailAndPassword(email, password)
+    firebaseAppAuth.signInWithEmailAndPassword(email, password)
     .then(() => {
       push('/HomeReception')
     });
   }
-  
+
   render() {
     const { email, password } = this.state;
     return (
@@ -50,7 +47,7 @@ class Login extends React.Component {
       />
       <ButtonDefault text="Entrar"  color="primary" onClick={this.signIn}/>
       <p>Ou</p>
-      <ButtonDefault text="Cadastre-se" color="secondary" onClick={this.createUser}/>
+      <Link to="/Register"> Cadastre-se </Link>
       </div>
       )
     }
