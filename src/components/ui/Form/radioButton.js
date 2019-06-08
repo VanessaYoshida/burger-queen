@@ -20,11 +20,6 @@ const useStyles = makeStyles(theme => ({
 
 function RadioButton(props) {
   const classes = useStyles();
-  // const [value, setValue] = React.useState('salao');
-
-  // function handleChange(props) {
-  //   setValue(event.target.value);
-  // }
 
   return (
     <div className={classes.root}>

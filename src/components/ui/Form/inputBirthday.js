@@ -10,25 +10,34 @@ const useStyles = makeStyles(theme => ({
   textField: {
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
+  },
+  dense: {
+    marginTop: theme.spacing(2),
+  },
+  menu: {
     width: 200,
   },
 }));
 
-export default function DatePickers(props) {
+function InputBirthday(props) {
   const classes = useStyles();
 
   return (
-    <form className={classes.container} noValidate>
+    <div className={classes.container} noValidate autoComplete="off">
       <TextField
-        id="date"
         label={props.text}
-        type="date"
-        defaultValue=""
+        value={props.value}
+        type={props.type}
+        onChange={props.onChange}
         className={classes.textField}
         InputLabelProps={{
           shrink: true,
         }}
+        margin="normal"
+        variant="outlined"
       />
-    </form>
+    </div>
   );
 }
+
+export default InputBirthday;

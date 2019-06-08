@@ -3,7 +3,7 @@ import firebase from 'components/util/config/firebaseConfig';
 import ButtonDefault from 'components/ui/Buttons/Default'
 import withFirebaseAuth from 'react-with-firebase-auth';
 import OutlinedTextFields from 'components/ui/Form/input';
-import DatePickers from 'components/ui/Form/inputBirthday';
+import InputBirthday from 'components/ui/Form/inputBirthday';
 import RadioButton from 'components/ui/Form/radioButton';
 
 const firebaseAppAuth = firebase.auth();
@@ -17,8 +17,7 @@ class Register extends React.Component {
       displayName: "",
       lastName: "",
       dateOfBirth: "",
-      typeUser: "",
-      listItem: []
+      typeUser: ""
     };
   }
   
@@ -67,7 +66,8 @@ class Register extends React.Component {
         <OutlinedTextFields text="Sobrenome" type="text" value={this.state.lastName}
           onChange={(e) => this.handleChange(e, "lastName")} 
         />
-        <DatePickers text="Data de Nascimento" value={this.state.dateOfBirth} onChange={(e) => this.handleChange(e, "dateOfBirth")} 
+        <InputBirthday text="Data de Nascimento" type="date" value={this.state.dateOfBirth}
+          onChange={(e) => this.handleChange(e, "dateOfBirth")} 
         />
         <RadioButton value={this.state.typeUser} onChange={(e) => this.handleChange(e, "typeUser")}
         />

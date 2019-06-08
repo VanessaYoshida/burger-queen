@@ -24,7 +24,7 @@ class Login extends React.Component {
   
   signIn = () => {
     const { email, password } = this.state;
-    const { signInWithEmailAndPassword, history: { push } } = this.props;
+    const { history: { push } } = this.props;
 
     firebaseAppAuth.signInWithEmailAndPassword(email, password)
     .then(() => {
