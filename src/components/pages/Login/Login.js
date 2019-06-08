@@ -6,6 +6,7 @@ import OutlinedTextFields from 'components/ui/Form/input';
 import { Link } from 'react-router-dom'
 
 const firebaseAppAuth = firebase.auth();
+const database = firebase.firestore();
 
 class Login extends React.Component {
   constructor(props) {
@@ -25,13 +26,27 @@ class Login extends React.Component {
   signIn = () => {
     const { email, password } = this.state;
     const { history: { push } } = this.props;
-
+    
     firebaseAppAuth.signInWithEmailAndPassword(email, password)
-    .then(() => {
-      push('/HomeReception')
-    });
+    .then((response) => {
+      if (response) {
+        database.doc(`users/${response.user.uid}`).get()
+        .then((response) => {
+          const data = response.data();
+          push(`/${data.typeUser}`); 
+        })
+      }
+    })
+    .catch((response) => {
+      if(response.message === "The password is invalid or the user does not have a password." 
+      || response.message === "There is no user record corresponding to this identifier. The user may have been deleted."){
+        alert("E-mail ou senha inválidos.");
+      } else {
+        alert(response.message);
+      }
+    })  
   }
-
+  
   render() {
     const { email, password } = this.state;
     return (
