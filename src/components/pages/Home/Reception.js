@@ -2,28 +2,28 @@ import React from 'react';
 import ButtonAppBar from 'components/ui/TopBar/ButtonAppBar';
 import ButtonDefault from 'components/ui/Buttons/Default';
 
-const cardapio = {
+const menu = {
   "breakfast": [
-      {item:"Café Americano", preco: 5},
-      {item:"Café com Leite", preco: 7},
-      {item:"Sanduíche de Presunto e Queijo", preco: 10},
-      {item:"Suco de Fruta Natural", preco: 7}
+      {item:"Café Americano", price: 5},
+      {item:"Café com Leite", price: 7},
+      {item:"Sanduíche de Presunto e Queijo", price: 10},
+      {item:"Suco de Fruta Natural", price: 7}
   ],
   "lunch": [
-      {item:"Hamburguer Simples Bovino", preco:10 },
-      {item:"Hamburguer Simples de Frango", preco:10 },
-      {item:"Hamburguer Simples Vegetariano", preco:10 },
-      {item:"Hamburguer Duplo Bovino", preco:15 },
-      {item:"Hamburguer Duplo Frango", preco:15 },
-      {item:"Hamburguer Duplo Vegetariano", preco:15 },
-      {item:"Queijo", preco:1 },
-      {item:"Ovo", preco:1 },
-      {item:"Batata Frita", preco:5 },
-      {item:"Anéis de Cebola", preco:5 },
-      {item:"Água 500ml", preco:5 },
-      {item:"Água 750ml", preco:7 },
-      {item:"Bebida gaseificada 500ml", preco:7 },
-      {item:"Bebida gaseificada 750ml", preco:10 }
+      {item:"Hamburguer Simples Bovino", price:10 },
+      {item:"Hamburguer Simples de Frango", price:10 },
+      {item:"Hamburguer Simples Vegetariano", price:10 },
+      {item:"Hamburguer Duplo Bovino", price:15 },
+      {item:"Hamburguer Duplo Frango", price:15 },
+      {item:"Hamburguer Duplo Vegetariano", price:15 },
+      {item:"Queijo", price:1 },
+      {item:"Ovo", price:1 },
+      {item:"Batata Frita", price:5 },
+      {item:"Anéis de Cebola", price:5 },
+      {item:"Água 500ml", price:5 },
+      {item:"Água 750ml", price:7 },
+      {item:"Bebida gaseificada 500ml", price:7 },
+      {item:"Bebida gaseificada 750ml", price:10 }
   ]
 }
 
@@ -33,71 +33,71 @@ class HomeReception extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      comprar: []
+      buy: []
     }
   }
 
-  cliqueDaCompra = (opcao) => {
-    const itemIndex = this.state.comprar.findIndex((produto) => {
-      return produto.item === opcao.item;
+  cliqueDaCompra = (option) => {
+    const itemIndex = this.state.buy.findIndex((product) => {
+      return product.item === option.item;
     })
     if (itemIndex < 0) {
       const newItem = {
-        ...opcao,
-        quantidade: 1
+        ...option,
+        amount: 1
       };
     this.setState({
-      comprar: this.state.comprar.concat(newItem)
+      buy: this.state.buy.concat(newItem)
     });
   } else {
-      let newComprar = this.state.comprar;
-      newComprar[itemIndex].quantidade += 1;
+      let newBuy = this.state.buy;
+      newBuy[itemIndex].amount += 1;
       this.setState({
-        comprar: newComprar
+        buy: newBuy
       })
     }
   }
 
-  cliqueDeleta = (opcao) => {
-    const itemIndex = this.state.comprar.findIndex((produto) => {
-      return produto.item === opcao.item;
+  clickDelete = (option) => {
+    const itemIndex = this.state.buy.findIndex((product) => {
+      return product.item === option.item;
     });
-    let newComprar = this.state.comprar;
-    newComprar[itemIndex].quantidade -= 1;
+    let newBuy = this.state.buy;
+    newBuy[itemIndex].amount -= 1;
 
-    const quantidade = newComprar[itemIndex].quantidade;
+    const amount = newBuy[itemIndex].amount;
 
-    if (quantidade > 0){
+    if (amount > 0){
       this.setState({
-        comprar: newComprar
+        buy: newBuy
       });
     } else {
-      newComprar.splice(itemIndex, 1);
+      newBuy.splice(itemIndex, 1);
       this.setState({
-        comprar: newComprar
+        buy: newBuy
       });
     }  
   }
 
   render() {
-    const valorTotal = this.state.comprar.reduce((acc, cur) => {
-      return acc + (cur.quantidade * cur.preco)
+    const valorTotal = this.state.buy.reduce((acc, cur) => {
+      return acc + (cur.amount * cur.price)
     }, 0);
     return (
       <div>
         <ButtonAppBar />
         {
-          cardapio.breakfast.map((produto, index) => {
-            return <ButtonDefault text={produto.item} key={index} color="primary"onClick={() => this.cliqueDaCompra(produto)}/>
+          menu.breakfast.map((product, index) => {
+            return <ButtonDefault text={product.item} key={index} color="primary"onClick={() => this.cliqueDaCompra(product)}/>
           })
         }
         <hr></hr>
         <h1> Itens Comprados </h1>
         {
-          this.state.comprar.map((produto, i) => {
+          this.state.buy.map((product, i) => {
             return <div key={i}>
-              <p key={i}>{produto.item} / {produto.preco * produto.quantidade} / {produto.quantidade} </p>
-              <ButtonDefault text="Deletar" onClick={() => this.cliqueDeleta(produto)} />
+              <p key={i}>{product.item} / {product.price * product.amount} / {product.amount} </p>
+              <ButtonDefault text="Deletar" onClick={() => this.clickDelete(product)} />
               </div>
           })
         }
