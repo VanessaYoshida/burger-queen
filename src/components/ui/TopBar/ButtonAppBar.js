@@ -19,23 +19,22 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function ButtonAppBar() {
+export default function ButtonAppBar(props) {
   const classes = useStyles();
+  
   return (
     <div className={classes.root}>
-      <AppBar position="static">
-        <Toolbar>
-          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="Menu">
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" className={classes.title}>
-            News
-          </Typography>
-          <Button color="inherit">Sair</Button>
-        </Toolbar>
-      </AppBar>
+    <AppBar position="static">
+    <Toolbar>
+    <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="Menu">
+    <MenuIcon />
+    </IconButton>
+    <Typography variant="h6" className={classes.title}>
+    Burger Queen
+    </Typography>
+    <Button color="inherit" onClick={props.clickLogout}>Sair</Button>
+    </Toolbar>
+    </AppBar>
     </div>
-  );
-}
-
-export default ButtonAppBar;
+    );
+  }

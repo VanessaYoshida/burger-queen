@@ -19,7 +19,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function OutlinedTextFields(props) {
+function Input(props) {
   const classes = useStyles();
 
   return (
@@ -37,4 +37,4 @@ function OutlinedTextFields(props) {
   );
 }
 
-export default OutlinedTextFields;
+export default Input;

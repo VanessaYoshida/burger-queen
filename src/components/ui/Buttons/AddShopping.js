@@ -12,7 +12,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function IconButtons() {
+function AddShopping() {
   const classes = useStyles();
 
   return (
@@ -27,4 +27,4 @@ function IconButtons() {
   );
 }
 
-export default IconButtons;
+export default AddShopping;

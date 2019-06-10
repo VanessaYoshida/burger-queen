@@ -1,9 +1,10 @@
 import React from 'react';
-import ButtonDefault from 'components/ui/Buttons/Default';
 import firebase from 'components/util/config/firebaseConfig';
 import withFirebaseAuth from 'react-with-firebase-auth';
-import OutlinedTextFields from 'components/ui/Form/input';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import ButtonDefault from 'components/ui/Buttons/Default';
+import Input from 'components/ui/Form/input';
+import 'components/pages/Login/login.css';
 
 const firebaseAppAuth = firebase.auth();
 const database = firebase.firestore();
@@ -29,6 +30,7 @@ class Login extends React.Component {
     
     firebaseAppAuth.signInWithEmailAndPassword(email, password)
     .then((response) => {
+      // sessionStorage['userID'] = userCredential.user.uid;
       if (response) {
         database.doc(`users/${response.user.uid}`).get()
         .then((response) => {
@@ -50,13 +52,11 @@ class Login extends React.Component {
   render() {
     const { email, password } = this.state;
     return (
-      <div>
-      <OutlinedTextFields text="E-mail" type="text" value={email}
-      placeholder="E-mail"
+      <div className="PageLogin">
+      <Input text="E-mail" type="email" placeholder="E-mail"
+      value={email}
       onChange={(e) => this.handleChange(e, "email")} />
-      <OutlinedTextFields text="Senha"
-      type="password"
-      placeholder="Senha"
+      <Input text="Senha" type="password" placeholder="Senha"
       value={password}
       onChange={(e) => this.handleChange(e, "password")}
       />
