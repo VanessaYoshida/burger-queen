@@ -8,13 +8,11 @@ const firebaseAppAuth = firebase.auth();
 class HomeReception extends React.Component {
   
   addOrder = () => {
-    this.props.history.push(`/addRequest`);
+    this.props.history.push(`/breakfast`);
   }
 
   clickLogout = () => {
-    console.log("clicou para sair");
-    firebaseAppAuth.signOut().then((response) => {
-      console.log(response);
+    firebaseAppAuth.signOut().then(() => {
       this.props.history.push(`/`);
     })
   }
