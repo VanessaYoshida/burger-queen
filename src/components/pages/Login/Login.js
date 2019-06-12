@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import ButtonDefault from 'components/ui/Buttons/Default';
 import Input from 'components/ui/Form/input';
 import logo from './img/Burger-Queen.png';
-import Card from '@material-ui/core/Card';
 import 'components/pages/Login/login.css';
 
 const firebaseAppAuth = firebase.auth();
