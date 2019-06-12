@@ -6,5 +6,31 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  background-color: #D3D3D3;
 } 
+
+.img-logo {
+  position: relative;
+  bottom: 0;
+  max-width: 280px;
+  max-height: 280px;
+}
+
+.input {
+  display: flex;
+  flex-direction: column;
+}
+
+.linkRegister {
+  text-decoration:none; 
+  color: blue;
+}
+
+.textRegister {
+  color: black;
+}
+
+.container {
+  background-color: white;
+  padding: 2rem 4rem;
+}

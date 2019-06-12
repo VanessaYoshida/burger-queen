@@ -20,24 +20,22 @@ const useStyles = makeStyles(theme => ({
 
 function RadioButton(props) {
   const classes = useStyles();
-
+  
   return (
-    <div className={classes.root}>
-      <FormControl component="fieldset" className={classes.formControl}>
-        <FormLabel component="legend">Tipo de Usuário</FormLabel>
-        <RadioGroup
-          aria-label="Tipo de Usuário"
-          name="typeuser"
-          className={classes.group}
-          value={props.value}
-          onChange={props.onChange}
-        >
-          <FormControlLabel value="salao" control={<Radio />} label="Salão" />
-          <FormControlLabel value="cozinha" control={<Radio />} label="Cozinha" />
-        </RadioGroup>
-      </FormControl>
-    </div>
-  );
-}
-
-export default RadioButton;
+    <FormControl component="fieldset" className={classes.formControl}>
+    <FormLabel component="legend">Tipo de Usuário</FormLabel>
+      <RadioGroup
+        aria-label="Tipo de Usuário"
+        name="typeuser"
+        className={classes.group}
+        value={props.value}
+        onChange={props.onChange}
+      >
+      <FormControlLabel value="salao" control={<Radio />} label="Salão" />
+      <FormControlLabel value="cozinha" control={<Radio />} label="Cozinha" />
+      </RadioGroup>
+    </FormControl>
+    );
+  }
+  
+  export default RadioButton;
