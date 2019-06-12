@@ -4,6 +4,8 @@ import withFirebaseAuth from 'react-with-firebase-auth';
 import { Link } from 'react-router-dom';
 import ButtonDefault from 'components/ui/Buttons/Default';
 import Input from 'components/ui/Form/input';
+import logo from './img/Burger-Queen.png';
+import Card from '@material-ui/core/Card';
 import 'components/pages/Login/login.css';
 
 const firebaseAppAuth = firebase.auth();
@@ -30,7 +32,6 @@ class Login extends React.Component {
     
     firebaseAppAuth.signInWithEmailAndPassword(email, password)
     .then((response) => {
-      // sessionStorage['userID'] = userCredential.user.uid;
       if (response) {
         database.doc(`users/${response.user.uid}`).get()
         .then((response) => {
@@ -52,17 +53,23 @@ class Login extends React.Component {
   render() {
     const { email, password } = this.state;
     return (
-      <div className="PageLogin">
-      <Input text="E-mail" type="email" placeholder="E-mail"
-      value={email}
-      onChange={(e) => this.handleChange(e, "email")} />
-      <Input text="Senha" type="password" placeholder="Senha"
-      value={password}
-      onChange={(e) => this.handleChange(e, "password")}
-      />
-      <ButtonDefault text="Entrar"  color="primary" onClick={this.signIn}/>
-      <p>Ou</p>
-      <Link to="/Register"> Cadastre-se </Link>
+      <div className="PageLogin"> 
+        <div className="container">      
+          <div>
+            <img src={logo} alt="img-logo" className="img-logo"/>   
+          </div>
+          <div class="input">
+            <Input text="E-mail" type="email" placeholder="E-mail"
+            value={email}
+            onChange={(e) => this.handleChange(e, "email")} />
+            <Input text="Senha" type="password" placeholder="Senha"
+            value={password}
+            onChange={(e) => this.handleChange(e, "password")}
+            />
+          </div>
+          <ButtonDefault text="Entrar" color="primary" onClick={this.signIn}/>
+          <Link to="/Register" className="linkRegister"><span className="textRegister">Não tem conta?</span> Cadastre-se </Link>
+        </div>
       </div>
       )
     }

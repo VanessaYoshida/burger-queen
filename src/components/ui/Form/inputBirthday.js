@@ -3,10 +3,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 
 const useStyles = makeStyles(theme => ({
-  container: {
-    display: 'flex',
-    flexWrap: 'wrap',
-  },
   textField: {
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
@@ -23,7 +19,6 @@ function InputBirthday(props) {
   const classes = useStyles();
 
   return (
-    <div className={classes.container} noValidate autoComplete="off">
       <TextField
         label={props.text}
         value={props.value}
@@ -36,7 +31,6 @@ function InputBirthday(props) {
         margin="normal"
         variant="outlined"
       />
-    </div>
   );
 }
 
