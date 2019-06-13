@@ -1,7 +1,7 @@
-import React from 'react';
+import React, {Component} from 'react';
+import { Link } from 'react-router-dom';
 import firebase from 'components/util/config/firebaseConfig';
 import withFirebaseAuth from 'react-with-firebase-auth';
-import { Link } from 'react-router-dom';
 import ButtonDefault from 'components/ui/Buttons/Default';
 import Input from 'components/ui/Form/input';
 import logo from './img/Burger-Queen.png';
@@ -10,7 +10,7 @@ import 'components/pages/Login/login.css';
 const firebaseAppAuth = firebase.auth();
 const database = firebase.firestore();
 
-class Login extends React.Component {
+class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -52,22 +52,22 @@ class Login extends React.Component {
   render() {
     const { email, password } = this.state;
     return (
-      <div className="PageLogin"> 
-        <div className="container">      
-          <div>
-            <img src={logo} alt="img-logo" className="img-logo"/>   
-          </div>
-          <div class="input">
-            <Input text="E-mail" type="email" placeholder="E-mail"
-            value={email}
-            onChange={(e) => this.handleChange(e, "email")} />
-            <Input text="Senha" type="password" placeholder="Senha"
-            value={password}
-            onChange={(e) => this.handleChange(e, "password")}
-            />
-          </div>
+      <div className="PageLogin">      
+        <div>
+          <img src={logo} alt="img-logo" className="img-logo"/>   
+        </div>
+        <div class="input">
+          <Input text="E-mail" type="email" placeholder="E-mail"
+          value={email}
+          onChange={(e) => this.handleChange(e, "email")} />
+          <Input text="Senha" type="password" placeholder="Senha"
+          value={password}
+          onChange={(e) => this.handleChange(e, "password")}
+          />
           <ButtonDefault text="Entrar" color="primary" onClick={this.signIn}/>
-          <Link to="/Register" className="linkRegister"><span className="textRegister">Não tem conta?</span> Cadastre-se </Link>
+        </div>
+        <div className="boxRegister">
+          <Link to="/register" className="linkRegister"><span className="textRegister">Não tem conta?</span> Cadastre-se </Link>
         </div>
       </div>
       )

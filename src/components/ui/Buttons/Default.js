@@ -11,9 +11,8 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function ButtonDefault(props) {
+const ButtonDefault = ({color, onClick, text}) => {
   const classes = useStyles();
-  const { color, onClick, text } = props;
   
   return (
     <div>

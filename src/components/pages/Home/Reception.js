@@ -1,11 +1,11 @@
-import React from 'react';
+import React, {Component} from 'react';
 import ButtonAppBar from 'components/ui/TopBar/ButtonAppBar';
 import firebase from 'components/util/config/firebaseConfig';
 import ButtonAddRequest from 'components/ui/Buttons/Add';
 
 const firebaseAppAuth = firebase.auth();
 
-class HomeReception extends React.Component {
+class HomeReception extends Component {
   
   addOrder = () => {
     this.props.history.push(`/breakfast`);

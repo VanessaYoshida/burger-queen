@@ -76,13 +76,11 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 
-function TabContainer(props) {
-  return (
-    <Typography component="div" style={{ padding: 8 * 3 }}>
-      {props.children}
-    </Typography>
-  );
-}
+const TabContainer = ({children}) => (
+  <Typography component="div" style={{ padding: 8 * 3 }}>
+    {children}
+  </Typography>
+);
 
 TabContainer.propTypes = {
   children: PropTypes.node.isRequired,

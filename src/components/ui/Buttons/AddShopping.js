@@ -12,7 +12,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function AddShopping() {
+const AddShopping = () => {
   const classes = useStyles();
 
   return (

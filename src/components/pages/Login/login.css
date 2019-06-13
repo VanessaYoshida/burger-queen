@@ -5,8 +5,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  background-color: #D3D3D3;
+  font-size: 16px;
 } 
 
 .img-logo {
@@ -21,16 +20,16 @@
   flex-direction: column;
 }
 
-.linkRegister {
-  text-decoration:none; 
-  color: blue;
+.boxRegister {
+  margin: 20px;
 }
 
 .textRegister {
   color: black;
 }
 
-.container {
-  background-color: white;
-  padding: 2rem 4rem;
+.linkRegister {
+  text-decoration:none; 
+  color: blue;
 }
+

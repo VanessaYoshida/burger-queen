@@ -15,15 +15,15 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function InputBirthday(props) {
+const InputBirthday = ({text, value, type, onChange}) => {
   const classes = useStyles();
 
   return (
       <TextField
-        label={props.text}
-        value={props.value}
-        type={props.type}
-        onChange={props.onChange}
+        label={text}
+        value={value}
+        type={type}
+        onChange={onChange}
         className={classes.textField}
         InputLabelProps={{
           shrink: true,
