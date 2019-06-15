@@ -12,13 +12,14 @@ const HomeReception = (props) => {
   
   const clickLogout = () => {
     firebaseAppAuth.signOut().then(() => {
+      localStorage.removeItem('userName');
       props.history.push(`/`);
     })
   }
   
   return (
     <Fragment>
-      <ButtonAppBar clickLogout={clickLogout}  />
+      <ButtonAppBar btnText="Sair" click={clickLogout}/>
       <div className="HomeReception" >
         <ButtonAddRequest text="Novo Pedido" color="secondary" onClick={() => addOrder()}/>
       </div>

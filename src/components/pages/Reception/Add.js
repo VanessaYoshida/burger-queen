@@ -7,7 +7,6 @@ import AddShopping from 'components/ui/Buttons/AddShopping';
 import Input from 'components/ui/Form/input';
 import './reception.css';
 
-const firebaseAppAuth = firebase.auth();
 const database = firebase.firestore();
 
 const menu = {
@@ -39,15 +38,17 @@ class AddRequest extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      orderNumber: "",
       nameClient: "",
-      idEmployee: "",
+      nameEmployee: "",
       category: "breakfast",
-      buy: []
+      buy: [],
+      date: new Date()
     }
   }
 
 
-  handleChangeSelect = (event, element) => {
+  handleChange = (event, element) => {
     const newState = this.state;
     newState[element] = event.target.value
     this.setState(newState);
@@ -97,11 +98,11 @@ class AddRequest extends Component {
 
   clickBuy = () => {
     console.log(database)
-    const {nameClient, idEmployee, category, buy} = this.state;
-    const { history: { push } } = this.props;
-    database.collection("orders").doc("idEmployee").set({
+    const {nameClient, nameEmployee, category, buy, orderNumber} = this.state;
+    // const { history: { push } } = this.props;
+    database.collection("orders").doc(orderNumber).set({
       nameClient,
-      idEmployee,
+      nameEmployee,
       category,
       buy
     })
@@ -110,10 +111,8 @@ class AddRequest extends Component {
     })
   }
 
-  clickLogout = () => {
-    firebaseAppAuth.signOut().then(() => {
-      this.props.history.push(`/`);
-    })
+  clickBack = () => {
+    this.props.history.push(`/salao`);
   }
 
   render() {
@@ -125,11 +124,11 @@ class AddRequest extends Component {
     const categorySelect = (this.state.category === "lunch") ? "lunch" : "breakfast";
     return (
       <Fragment>
-        <ButtonAppBar clickLogout={this.clickLogout} />
+        <ButtonAppBar btnText="Voltar" click={this.clickBack} />
         <Input text="Nome do Cliente" type="text" value={this.state.nameClient}
-            onChange={(e) => this.handleChange(e, "nameClient")} 
-            /> 
-        <select className="categoryMenu" value={this.state.category} onChange={(e) => this.handleChangeSelect(e, "category")} >
+            onChange={(e) => this.handleChange(e, "nameClient")} required 
+        /> 
+        <select className="categoryMenu" value={this.state.category} onChange={(e) => this.handleChange(e, "category")} >
           <option value="breakfast" >Café da Manhã</option>
           <option value="lunch">Almoço ou Janta</option>
         </select>    
@@ -148,8 +147,11 @@ class AddRequest extends Component {
         {
           this.state.buy.map((product, i) => {
             return <div key={i}>
-              <p>{product.item} / {product.price * product.amount} / {product.amount} </p>
+              <p> Produto: {product.item} </p>
+              <p> Quantidade: {product.amount} </p>
+              <p> Valor: {product.price * product.amount} </p>
               <ButtonDefault text="Deletar" onClick={() => this.clickDelete(product)} />
+              <hr></hr>
               </div>
           })
         }

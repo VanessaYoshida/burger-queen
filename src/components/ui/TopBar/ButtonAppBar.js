@@ -14,19 +14,20 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const ButtonAppBar = ({clickLogout}) => {
+const ButtonAppBar = ({click, btnText}) => {
   const classes = useStyles();
-  
+  let showUserName = localStorage.getItem('userName') ? true : false;
+  const userName = " - Logado como " + localStorage.getItem('userName');
   return (
     <div className={classes.root}>
-    <AppBar position="static">
-    <Toolbar>
-    <Typography variant="h6" className={classes.title}>
-    Burger Queen
-    </Typography>
-    <Button color="inherit" onClick={clickLogout}>Sair</Button>
-    </Toolbar>
-    </AppBar>
+      <AppBar position="static">
+        <Toolbar>
+          <Typography variant="h6" className={classes.title}>
+          Burger Queen {showUserName ? userName : ""}
+          </Typography>
+          <Button color="inherit" onClick={click}>{btnText}</Button>
+        </Toolbar>
+      </AppBar>
     </div>
     );
   }
