@@ -56,7 +56,7 @@ class Login extends Component {
         <div>
           <img src={logo} alt="img-logo" className="img-logo"/>   
         </div>
-        <div class="input">
+        <div className="input">
           <Input text="E-mail" type="email" placeholder="E-mail"
           value={email}
           onChange={(e) => this.handleChange(e, "email")} />

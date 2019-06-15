@@ -1,11 +1,14 @@
-import React from 'react';
+import React, {Component, Fragment} from 'react';
 import firebase from 'components/util/config/firebaseConfig';
 import ButtonDefault from 'components/ui/Buttons/Default';
+import ButtonAddRequest from 'components/ui/Buttons/Add';
 import ButtonAppBar from 'components/ui/TopBar/ButtonAppBar';
 import AddShopping from 'components/ui/Buttons/AddShopping';
-import PillsTabs from 'components/ui/AppBar/Period';
+import Input from 'components/ui/Form/input';
+import './reception.css';
 
 const firebaseAppAuth = firebase.auth();
+const database = firebase.firestore();
 
 const menu = {
   "breakfast": [
@@ -32,15 +35,25 @@ const menu = {
   ]
 }
 
-class RequestLunch extends React.Component {
+class AddRequest extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      nameClient: "",
+      idEmployee: "",
+      category: "breakfast",
       buy: []
     }
   }
 
-  clickBuy = (option) => {
+
+  handleChangeSelect = (event, element) => {
+    const newState = this.state;
+    newState[element] = event.target.value
+    this.setState(newState);
+  }
+
+  clickAddItem = (option) => {
     const itemIndex = this.state.buy.findIndex((product) => {
       return product.item === option.item;
     })
@@ -82,6 +95,21 @@ class RequestLunch extends React.Component {
     }  
   }
 
+  clickBuy = () => {
+    console.log(database)
+    const {nameClient, idEmployee, category, buy} = this.state;
+    const { history: { push } } = this.props;
+    database.collection("orders").doc("idEmployee").set({
+      nameClient,
+      idEmployee,
+      category,
+      buy
+    })
+    .then((response) => {
+      console.log(response)
+    })
+  }
+
   clickLogout = () => {
     firebaseAppAuth.signOut().then(() => {
       this.props.history.push(`/`);
@@ -89,16 +117,30 @@ class RequestLunch extends React.Component {
   }
 
   render() {
+    console.log(this.state.buy);
+    console.log(this.state.category);
     const valorTotal = this.state.buy.reduce((acc, cur) => {
       return acc + (cur.amount * cur.price)
     }, 0);
+    const categorySelect = (this.state.category === "lunch") ? "lunch" : "breakfast";
     return (
-      <div>
-        <ButtonAppBar clickLogout={this.clickLogout}  />
-        <PillsTabs />
+      <Fragment>
+        <ButtonAppBar clickLogout={this.clickLogout} />
+        <Input text="Nome do Cliente" type="text" value={this.state.nameClient}
+            onChange={(e) => this.handleChange(e, "nameClient")} 
+            /> 
+        <select className="categoryMenu" value={this.state.category} onChange={(e) => this.handleChangeSelect(e, "category")} >
+          <option value="breakfast" >Café da Manhã</option>
+          <option value="lunch">Almoço ou Janta</option>
+        </select>    
         {
-          menu.lunch.map((product, index) => {
-            return <ButtonDefault text={product.item} key={index} color="primary" onClick={() => this.clickBuy(product)}/>
+          menu[categorySelect].map((product, index) => {
+            return <div key={index}>
+              
+            <p>Produto: {product.item}</p>
+            <ButtonAddRequest text="" key={index} color="primary" onClick={() => this.clickAddItem(product)}/>
+            <ButtonDefault text="Deletar" color="secondary" onClick={() => this.clickDelete(product)} />
+            </div>
           })
         }
         <hr></hr>
@@ -106,7 +148,7 @@ class RequestLunch extends React.Component {
         {
           this.state.buy.map((product, i) => {
             return <div key={i}>
-              <p key={i}>{product.item} / {product.price * product.amount} / {product.amount} </p>
+              <p>{product.item} / {product.price * product.amount} / {product.amount} </p>
               <ButtonDefault text="Deletar" onClick={() => this.clickDelete(product)} />
               </div>
           })
@@ -114,10 +156,10 @@ class RequestLunch extends React.Component {
         <hr></hr>
         <h1> Total </h1>
         <p> Valor Total: {valorTotal}</p>
-        <AddShopping></AddShopping>
-      </div>
+        <AddShopping onClick={() => this.clickBuy()}/>
+      </Fragment>
     );
   }
 }
 
-export default RequestLunch;
+export default AddRequest;

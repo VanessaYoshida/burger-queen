@@ -68,34 +68,34 @@ class Register extends Component {
     }
     const { email, password, displayName, lastName, dateOfBirth, typeUser } = this.state;
     return (
-      <div>
+      <>
       <ButtonAppBar clickLogout={this.clickLogout} />
       <div class="PageRegister"> 
         <h3>Cadastre-se</h3>
         <Grid container spacing={3}>  
           <Grid item xs={12}>
-          <Input text="E-mail" type="text" value={email}
-          onChange={(e) => this.handleChange(e, "email")} 
-          />
-          <Input text="password" type="password" value={password}
-          onChange={(e) => this.handleChange(e, "password")}
-          />
-          <Input text="Nome" type="text" value={displayName}
-          onChange={(e) => this.handleChange(e, "displayName")} 
-          />
-          <Input text="Sobrenome" type="text" value={lastName}
-          onChange={(e) => this.handleChange(e, "lastName")} 
-          />
-          <InputBirthday text="Data de Nascimento" type="date" value={dateOfBirth}
-          onChange={(e) => this.handleChange(e, "dateOfBirth")} 
-          />
-          <RadioButton value={typeUser} onChange={(e) => this.handleChange(e, "typeUser")}
-          />
-          <ButtonDefault text="Cadastrar" color="primary" onClick={this.createUser} />  
+            <Input text="E-mail" type="text" value={email}
+            onChange={(e) => this.handleChange(e, "email")} 
+            />
+            <Input text="password" type="password" value={password}
+            onChange={(e) => this.handleChange(e, "password")}
+            />
+            <Input text="Nome" type="text" value={displayName}
+            onChange={(e) => this.handleChange(e, "displayName")} 
+            />
+            <Input text="Sobrenome" type="text" value={lastName}
+            onChange={(e) => this.handleChange(e, "lastName")} 
+            />
+            <InputBirthday text="Data de Nascimento" type="date" value={dateOfBirth}
+            onChange={(e) => this.handleChange(e, "dateOfBirth")} 
+            />
+            <RadioButton value={typeUser} onChange={(e) => this.handleChange(e, "typeUser")}
+            />
+            <ButtonDefault text="Cadastrar" color="primary" onClick={this.createUser} />  
           </Grid>
         </Grid>
       </div> 
-      </div>
+      </>
       )
     }
   }

@@ -13,22 +13,15 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const ButtonAddRequest = ({onClick}) => {
+const ButtonAddRequest = (props) => {
   const classes = useStyles();
   
   return (
     <div>
-      <div>
-        <Fab variant="extended" color="secondary" aria-label="Add" className={classes.margin} onClick={onClick}>
-          <AddIcon className={classes.extendedIcon} />
-          Novo Pedido
-        </Fab>
-        <p>Pedidos Abertos</p>
-        <hr></hr>
-
-        <p>Pedidos Prontos</p>
-        <hr></hr>
-      </div>
+      <Fab variant="extended" color={props.color} aria-label="Add" className={classes.margin} onClick={props.onClick}>
+        <AddIcon className={classes.extendedIcon} />
+        {props.text}
+      </Fab>
     </div>
   );
 }

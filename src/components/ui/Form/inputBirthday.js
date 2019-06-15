@@ -11,7 +11,7 @@ const useStyles = makeStyles(theme => ({
     marginTop: theme.spacing(2),
   },
   menu: {
-    width: 200,
+    width: 400,
   },
 }));
 

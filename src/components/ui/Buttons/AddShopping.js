@@ -12,15 +12,15 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const AddShopping = () => {
+const AddShopping = ({onClick}) => {
   const classes = useStyles();
 
   return (
     <div>
-      <IconButton color="primary" className={classes.button} aria-label="Add to shopping cart">
-        <AddShoppingCartIcon />
+      <IconButton color="primary" className={classes.button} aria-label="Add to shopping cart" onClick={onClick}> 
+        <AddShoppingCartIcon /> Fechar Pedido
       </IconButton>
-      <input accept="image/*" className={classes.input} id="icon-button-file" type="file" />
+      <input accept="image/*" className={classes.input} id="icon-button-file" type="file"/>
       <label htmlFor="icon-button-file">
       </label>
     </div>
