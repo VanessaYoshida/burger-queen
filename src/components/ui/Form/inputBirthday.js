@@ -11,19 +11,19 @@ const useStyles = makeStyles(theme => ({
     marginTop: theme.spacing(2),
   },
   menu: {
-    width: 200,
+    width: 400,
   },
 }));
 
-function InputBirthday(props) {
+const InputBirthday = ({text, value, type, onChange}) => {
   const classes = useStyles();
 
   return (
       <TextField
-        label={props.text}
-        value={props.value}
-        type={props.type}
-        onChange={props.onChange}
+        label={text}
+        value={value}
+        type={type}
+        onChange={onChange}
         className={classes.textField}
         InputLabelProps={{
           shrink: true,

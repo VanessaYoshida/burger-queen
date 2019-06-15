@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function RadioButton(props) {
+const RadioButton = ({value, onChange}) => {
   const classes = useStyles();
   
   return (
@@ -28,8 +28,8 @@ function RadioButton(props) {
         aria-label="Tipo de Usuário"
         name="typeuser"
         className={classes.group}
-        value={props.value}
-        onChange={props.onChange}
+        value={value}
+        onChange={onChange}
       >
       <FormControlLabel value="salao" control={<Radio />} label="Salão" />
       <FormControlLabel value="cozinha" control={<Radio />} label="Cozinha" />

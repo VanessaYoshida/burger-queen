@@ -14,7 +14,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function ButtonAppBar(props) {
+const ButtonAppBar = ({clickLogout}) => {
   const classes = useStyles();
   
   return (
@@ -24,9 +24,11 @@ export default function ButtonAppBar(props) {
     <Typography variant="h6" className={classes.title}>
     Burger Queen
     </Typography>
-    <Button color="inherit" onClick={props.clickLogout}>Sair</Button>
+    <Button color="inherit" onClick={clickLogout}>Sair</Button>
     </Toolbar>
     </AppBar>
     </div>
     );
   }
+
+  export default ButtonAppBar;

@@ -15,18 +15,18 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function Input(props) {
+const Input = ({type, text, onChange}) => {
   const classes = useStyles();
   
   return (
     <TextField
       required
-      type={props.type}
-      label={props.text}
+      type={type}
+      label={text}
       className={classes.textField}
       margin="normal"
       variant="outlined"
-      onChange={props.onChange}
+      onChange={onChange}
     />
     );
   }

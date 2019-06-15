@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import firebase from 'components/util/config/firebaseConfig';
 import withFirebaseAuth from 'react-with-firebase-auth';
 import ButtonDefault from 'components/ui/Buttons/Default';
@@ -12,7 +12,7 @@ import 'components/pages/Register/register.css';
 const firebaseAppAuth = firebase.auth();
 const database = firebase.firestore();
 
-class Register extends React.Component {
+class Register extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -66,35 +66,36 @@ class Register extends React.Component {
         alert(this.props.error);
       }
     }
+    const { email, password, displayName, lastName, dateOfBirth, typeUser } = this.state;
     return (
-      <div>
+      <>
       <ButtonAppBar clickLogout={this.clickLogout} />
       <div class="PageRegister"> 
         <h3>Cadastre-se</h3>
         <Grid container spacing={3}>  
           <Grid item xs={12}>
-          <Input text="E-mail" type="text" value={this.state.email}
-          onChange={(e) => this.handleChange(e, "email")} 
-          />
-          <Input text="password" type="password" value={this.state.password}
-          onChange={(e) => this.handleChange(e, "password")}
-          />
-          <Input text="Nome" type="text" value={this.state.displayName}
-          onChange={(e) => this.handleChange(e, "displayName")} 
-          />
-          <Input text="Sobrenome" type="text" value={this.state.lastName}
-          onChange={(e) => this.handleChange(e, "lastName")} 
-          />
-          <InputBirthday text="Data de Nascimento" type="date" value={this.state.dateOfBirth}
-          onChange={(e) => this.handleChange(e, "dateOfBirth")} 
-          />
-          <RadioButton value={this.state.typeUser} onChange={(e) => this.handleChange(e, "typeUser")}
-          />
-          <ButtonDefault text="Cadastrar" color="primary" onClick={this.createUser} />  
+            <Input text="E-mail" type="text" value={email}
+            onChange={(e) => this.handleChange(e, "email")} 
+            />
+            <Input text="password" type="password" value={password}
+            onChange={(e) => this.handleChange(e, "password")}
+            />
+            <Input text="Nome" type="text" value={displayName}
+            onChange={(e) => this.handleChange(e, "displayName")} 
+            />
+            <Input text="Sobrenome" type="text" value={lastName}
+            onChange={(e) => this.handleChange(e, "lastName")} 
+            />
+            <InputBirthday text="Data de Nascimento" type="date" value={dateOfBirth}
+            onChange={(e) => this.handleChange(e, "dateOfBirth")} 
+            />
+            <RadioButton value={typeUser} onChange={(e) => this.handleChange(e, "typeUser")}
+            />
+            <ButtonDefault text="Cadastrar" color="primary" onClick={this.createUser} />  
           </Grid>
         </Grid>
       </div> 
-      </div>
+      </>
       )
     }
   }
