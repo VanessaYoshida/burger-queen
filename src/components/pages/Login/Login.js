@@ -35,6 +35,7 @@ class Login extends Component {
         database.doc(`users/${response.user.uid}`).get()
         .then((response) => {
           const data = response.data();
+          localStorage.setItem('userName', data.displayName);
           push(`/${data.typeUser}`); 
         })
       }
