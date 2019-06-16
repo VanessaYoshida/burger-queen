@@ -7,7 +7,7 @@ const firebaseAppAuth = firebase.auth();
 
 const HomeReception = (props) => {
   const addOrder = () => {
-    props.history.push(`/addRequest`);
+    props.history.push(`/carrinho`);
   }
   
   const clickLogout = () => {
