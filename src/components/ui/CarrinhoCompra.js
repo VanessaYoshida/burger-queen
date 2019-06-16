@@ -1,5 +1,11 @@
 import React, {Component, Fragment} from 'react';
+import firebase from 'components/util/config/firebaseConfig';
 import ItemCarrinho from './ItemCarrinho';
+import ButtonAppBar from 'components/ui/TopBar/ButtonAppBar';
+import AddShopping from 'components/ui/Buttons/AddShopping';
+import Input from 'components/ui/Form/input';
+
+const database = firebase.firestore();
 
 const menu = {
   "breakfast": [
@@ -30,6 +36,13 @@ class CarrinhoCompra extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      orderNumber: 1,
+      nameClient: "",
+      nameEmployee: localStorage.getItem('userName'),
+      category: "breakfast",
+      cartItens:[],
+      date: new Date(),
+      status: "aberto",
       itensTotal: [],
       totalFinal: 0
     }
@@ -59,11 +72,49 @@ class CarrinhoCompra extends Component {
     })
   }
 
+  dataItemCarrinho = (data) => {
+    let cartItens = this.state.cartItens;
+    cartItens[data.id] = data;
+    this.setState({
+      cartItens: cartItens
+    })
+  }
+
+  clickBuy = () => {
+    const {nameClient, category, cartItens, totalFinal} = this.state;
+    const lastOrder = database.collection("orders").orderBy("orderNumber", "desc").limit(1).get()
+    .then(function(querySnapshot) {
+      let newOrderNumber = 0;
+      console.log(querySnapshot);
+      if (querySnapshot.docs.length > 0){
+        querySnapshot.forEach(function(doc) {
+          console.log(doc.id, " => ", doc.data().orderNumber);
+          newOrderNumber = doc.data().orderNumber;
+        });
+      }
+      
+      let itens = cartItens.filter((item) => item !== "null" && item.quantidade > 0);
+      database.collection("orders").add({
+        orderNumber: parseInt(newOrderNumber)+1,
+        nameClient,
+        category,
+        itens,
+        totalFinal
+      })
+  })
+  
+    
+  }
+
   render() {
     const categorySelect = (this.state.category === "lunch") ? "lunch" : "breakfast";
     return (
       <Fragment>
-      <select className="categoryMenu" value=       {this.state.category} onChange={this.changeCategory} >
+      <ButtonAppBar btnText="Voltar" click={this.clickBack} />
+      <Input text="Nome do Cliente" type="text" value={this.state.nameClient}
+      onChange={(e) => this.handleChange(e, "nameClient")} required 
+      />  
+      <select className="categoryMenu" value={this.state.category} onChange={this.changeCategory} >
           <option value="breakfast" >Café da Manhã</option>
           <option value="lunch">Almoço ou Janta</option>
       </select>     
@@ -79,7 +130,7 @@ class CarrinhoCompra extends Component {
         <tbody>
           {
             menu[categorySelect].map((product, i) => {
-              return <ItemCarrinho key={product.id} id={i} produto={product.item} quantidade="0" valor={product.price} getTotal={this.atualizaTotal} ></ItemCarrinho>
+              return <ItemCarrinho key={product.id} id={i} produto={product.item} quantidade="0" valor={product.price} getTotal={this.atualizaTotal} getData={this.dataItemCarrinho} ></ItemCarrinho>
             })
           }  
           <tr>
@@ -89,7 +140,7 @@ class CarrinhoCompra extends Component {
           </tr>
         </tbody>
       </table>
-      
+      <AddShopping onClick={this.clickBuy}/>
       </Fragment>
     )
   }

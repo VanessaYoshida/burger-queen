@@ -20,6 +20,13 @@ class ItemCarrinho extends Component {
       total: total
     });
     this.props.getTotal(total, this.state.id);
+    this.props.getData({
+      quantidade: qtde,
+      total: total,
+      id: this.state.id,
+      produto: this.state.produto,
+      valor: this.state.valor
+    });
   }
 
   mais = () => {
@@ -30,6 +37,13 @@ class ItemCarrinho extends Component {
       total: total
     });
     this.props.getTotal(total, this.state.id);
+    this.props.getData({
+      quantidade: qtde,
+      total: total,
+      id: this.state.id,
+      produto: this.state.produto,
+      valor: this.state.valor
+    });
   }
 
   render() {
