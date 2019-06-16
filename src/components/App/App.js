@@ -4,6 +4,7 @@ import Login from 'components/pages/Login/Login';
 import Register from 'components/pages/Register/Register';
 import HomeReception from 'components/pages/Reception/HomeReception';
 import AddRequest from 'components/pages/Reception/Add';
+import FinalizaPedido from 'components/pages/Reception/FinalizaPedido';
 
 const App = () => (
     <Router>
@@ -14,6 +15,7 @@ const App = () => (
           <Route path="/salao" exact component={HomeReception}/>
           <Route path="/addRequest" exact component={AddRequest}/>
           <Route path="/cozinha" exact component={HomeReception}/>
+          <Route path="/finalizaPedido" exact component={FinalizaPedido}/>
         </header>
       </div>
     </Router>

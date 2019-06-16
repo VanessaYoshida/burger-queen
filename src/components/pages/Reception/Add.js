@@ -47,7 +47,6 @@ class AddRequest extends Component {
     }
   }
 
-
   handleChange = (event, element) => {
     const newState = this.state;
     newState[element] = event.target.value
@@ -98,9 +97,10 @@ class AddRequest extends Component {
 
   clickBuy = () => {
     console.log(database)
-    const {nameClient, nameEmployee, category, buy, orderNumber} = this.state;
+    const {orderNumber, nameClient, nameEmployee, category, buy} = this.state;
     // const { history: { push } } = this.props;
     database.collection("orders").doc(orderNumber).set({
+      orderNumber,
       nameClient,
       nameEmployee,
       category,
