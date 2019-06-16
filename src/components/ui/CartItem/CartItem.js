@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import './cartItem.css';
 
 class CartItem extends Component {
   constructor(props) {
@@ -53,7 +54,7 @@ class CartItem extends Component {
           <td>{this.state.product}</td>
           <td>
             <button onClick={this.minus}> - </button>  
-            {this.state.amount}
+            <span className="amount">{this.state.amount}</span>
             <button onClick={this.plus}> + </button>  
           </td>
           <td>{this.state.value}</td>

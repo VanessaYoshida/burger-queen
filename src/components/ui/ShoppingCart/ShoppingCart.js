@@ -3,6 +3,8 @@ import firebase from 'components/util/config/firebaseConfig';
 import CartItem from '../CartItem/CartItem';
 import AddShopping from 'components/ui/Buttons/AddShopping';
 import Input from 'components/ui/Form/input';
+import {withRouter} from 'react-router-dom';
+import './shoppingCart.css';
 
 const database = firebase.firestore();
 
@@ -80,8 +82,9 @@ class ShoppingCart extends Component {
 
   clickBuy = () => {
     const {nameClient, category, cartItens, totalFinal} = this.state;
+    const { history: {push} } = this.props;
     database.collection("orders").orderBy("orderNumber", "desc").limit(1).get()
-    .then(function(querySnapshot) {
+    .then((querySnapshot) => {
       let newOrderNumber = 0;
       if (querySnapshot.docs.length > 0) {
         querySnapshot.forEach(function(doc) {
@@ -91,11 +94,16 @@ class ShoppingCart extends Component {
       let itens = cartItens.filter((item) => item !== "null" && item.amount > 0);
       database.collection("orders").add({
         orderNumber: parseInt(newOrderNumber) + 1,
+        nameEmployee: localStorage.getItem('userName'),
         nameClient,
         category,
         itens,
-        totalFinal
+        totalFinal,
+        date: new Date(),
+        status: "aberto"
       })
+      alert("Pedido Finalizado com Sucesso!");
+      push("/salao");
     })
   }
 
@@ -110,7 +118,7 @@ class ShoppingCart extends Component {
           <option value="breakfast">Café da Manhã</option>
           <option value="lunch">Almoço ou Janta</option>
         </select>     
-        <table border="1">
+        <table>
           <thead>
             <tr>
               <th>Produto</th>
@@ -138,4 +146,4 @@ class ShoppingCart extends Component {
   }
 }  
 
-export default ShoppingCart;
+export default withRouter(ShoppingCart);
