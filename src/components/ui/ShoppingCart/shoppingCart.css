@@ -1,0 +1,27 @@
+table, th, td {
+  border-collapse: collapse;
+  border: 2px solid grey;
+  padding: 8px;
+  text-align: center;
+}
+
+th {
+  background-color: #8FBFE0;
+}
+
+table {
+  display: block;
+  border-radius: 10px;
+  
+}
+
+.categoryMenu {
+  outline: none;
+  background-color: white;
+  border: 1px solid gray;
+  border-radius: 10px;
+  font-size: 16px; 
+  font-weight: bold; 
+  padding: 5px;
+  margin: 10px;
+}

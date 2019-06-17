@@ -36,6 +36,7 @@ class Register extends Component {
     this.props.createUserWithEmailAndPassword(email, password)
     .then((response) => { 
       if (response) {
+        console.log(response);
         database.doc(`users/${response.user.uid}`)
         .set({
           email,

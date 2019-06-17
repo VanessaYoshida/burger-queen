@@ -68,7 +68,7 @@ class Login extends Component {
           <ButtonDefault text="Entrar" color="primary" onClick={this.signIn}/>
         </div>
         <div className="boxRegister">
-          <Link to="/register" className="linkRegister"><span className="textRegister">Não tem conta?</span> Cadastre-se </Link>
+          <Link to="/cadastro" className="linkRegister"><span className="textRegister">Não tem conta?</span> Cadastre-se </Link>
         </div>
       </div>
       )
