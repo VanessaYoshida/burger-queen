@@ -26,7 +26,6 @@ class HomeKitchen extends Component {
       if (querySnapshot.docs.length > 0) {
         let orders = [];
         querySnapshot.forEach(function(doc) {
-          console.log(doc.data());
           orders.push(doc.data())
         });
         this.setState({
@@ -55,7 +54,6 @@ class HomeKitchen extends Component {
             })
           }
           <hr></hr>
-          <button onClick={this.getOrders}>Teste</button>
           </div>  
       </Fragment>
     );
