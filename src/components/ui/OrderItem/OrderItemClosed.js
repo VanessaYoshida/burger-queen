@@ -8,7 +8,7 @@ class OrderItemClosed extends Component {
     this.state = {
       orderNumber: props.orderNumber,
       orderTime: props.orderTime,
-      waitingTime: "",
+      waitingTime: props.waitingTime,
       clientName: props.clientName,
       status: props.status
     }

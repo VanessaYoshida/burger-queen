@@ -53,12 +53,12 @@ class CartItem extends Component {
         <tr>
           <td>{this.state.product}</td>
           <td>
-            <button onClick={this.minus}> - </button>  
+            <button className="buttonTable" onClick={this.minus}> - </button>  
             <span className="amount">{this.state.amount}</span>
-            <button onClick={this.plus}> + </button>  
+            <button className="buttonTable" onClick={this.plus}> + </button>  
           </td>
-          <td>{this.state.value}</td>
-          <td>{this.state.total}</td>
+          <td>R${this.state.value}</td>
+          <td>R${this.state.total}</td>
         </tr>
       </>  
     )

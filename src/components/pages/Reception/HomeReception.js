@@ -27,16 +27,16 @@ const HomeReception = (props) => {
   return (
     <Fragment>
       <ButtonAppBar btnText="Sair" click={clickLogout}/>
-      <div className="HomeReception" >
-        <ButtonAddRequest text="Novo Pedido" color="secondary" onClick={() => addOrder()}/>
-      </div>
-      <div>
-        <p>Pedidos Prontos</p>
-        <OrderItemClosed orderNumber="1" orderTime="19:07" clientName="Luffy" status="pronto"></OrderItemClosed>
-        <OrderItemClosed orderNumber="1" orderTime="19:07" clientName="Luffy" status="pronto"></OrderItemClosed>
-        <OrderItemClosed orderNumber="1" orderTime="19:07" clientName="Luffy" status="pronto"></OrderItemClosed>
-        <hr></hr>
-        </div>  
+      <main className="Reception">
+        <header>
+          <ButtonAddRequest text="Novo Pedido" color="secondary" onClick={() => addOrder()}/>
+        </header>
+        <body>
+          <p><b>Pedidos Prontos</b></p>
+          <OrderItemClosed orderNumber="1" orderTime="19:07" waitingTime="10 min" clientName="Luffy" status="pronto"></OrderItemClosed>
+          <OrderItemClosed orderNumber="2" orderTime="19:08" waitingTime="11 min" clientName="Nami" status="pronto"></OrderItemClosed>
+        </body>  
+      </main>  
     </Fragment>
   );
 }

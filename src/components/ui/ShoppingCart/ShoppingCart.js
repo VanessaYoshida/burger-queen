@@ -129,13 +129,13 @@ class ShoppingCart extends Component {
           </thead>
           <tbody>
             {
-              menu[categorySelect].map((product, i) => {
-                return <CartItem key={product.id} id={i} product={product.item} amount="0" value={product.price} getTotal={this.updateTotal} getData={this.dataItemCart}></CartItem>
+              menu[categorySelect].map((product, index) => {
+                return <CartItem key={product.id} id={index} product={product.item} amount="0" value={product.price} getTotal={this.updateTotal} getData={this.dataItemCart}></CartItem>
               })
             }  
             <tr>
               <td colSpan="4">
-                Total = {this.state.totalFinal}
+                Total = R$ {this.state.totalFinal},00
               </td>
             </tr>
           </tbody>

@@ -1,6 +1,7 @@
 import React from 'react';
 import ShoppingCart from 'components/ui/ShoppingCart/ShoppingCart';
 import ButtonAppBar from 'components/ui/TopBar/ButtonAppBar';
+import './reception.css';
 
 const Cart = (props) => {
   const clickBack = () => {
@@ -10,7 +11,9 @@ const Cart = (props) => {
   return (
     <>
       <ButtonAppBar btnText="Voltar" click={clickBack} />
-      <ShoppingCart></ShoppingCart>
+      <main className="Reception">
+        <ShoppingCart></ShoppingCart>
+      </main>
     </>
   )
 }
