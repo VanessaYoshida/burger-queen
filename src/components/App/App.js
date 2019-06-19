@@ -5,6 +5,7 @@ import Register from 'components/pages/Register/Register';
 import HomeReception from 'components/pages/Reception/HomeReception';
 import HomeKitchen from 'components/pages/Kitchen/HomeKitchen';
 import Cart from 'components/pages/Reception/Cart';
+import ShowOrder from 'components/pages/ShowOrder/ShowOrder';
 
 const App = () => (
   <Router>
@@ -15,6 +16,7 @@ const App = () => (
         <Route path="/salao" exact component={HomeReception}/>
         <Route path="/cozinha" exact component={HomeKitchen}/>
         <Route path="/carrinho" exact component={Cart}/>
+        <Route path="/mostrarPedido" exact component={ShowOrder}/>
       </header>
     </div>
   </Router>
