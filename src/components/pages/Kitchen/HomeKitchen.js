@@ -2,6 +2,8 @@ import React, {Component, Fragment} from 'react';
 import ButtonAppBar from 'components/ui/TopBar/ButtonAppBar';
 import firebase from 'components/util/config/firebaseConfig';
 import OrderItemOpened from 'components/ui/OrderItem/OrderItemOpened';
+import ButtonDefault from 'components/ui/Buttons/Default';
+import Card from '@material-ui/core/Card';
 import './homeKitchen.css';
 
 const database = firebase.firestore();
@@ -15,10 +17,6 @@ class HomeKitchen extends Component {
     } 
     this.getOrders();
   }  
-
-  addOrder = () => {
-    this.props.history.push(`/carrinho`);
-  }
 
   getOrders = () => {
     const orderOpened = database.collection("orders").where("status", "==", "aberto").orderBy("orderNumber","asc");
@@ -42,6 +40,12 @@ class HomeKitchen extends Component {
     })
   }
 
+  orderDelivered = (orderNumber) => {
+    localStorage.removeItem('orderNumber');
+    localStorage.setItem('orderNumber', orderNumber);
+    this.props.history.push("/mostrarPedido");
+  }
+
   render() {
     return (
       <Fragment>
@@ -50,7 +54,10 @@ class HomeKitchen extends Component {
           <p>Pedidos Abertos</p>
           {
             this.state.ordersOpened.map((order) => {
-              return <OrderItemOpened key={order.orderNumber} orderNumber={order.orderNumber} orderTime={order.date} clientName={order.nameClient} status={order.status}></OrderItemOpened>
+              return <Card key={order.orderNumber}>
+                <OrderItemOpened orderNumber={order.orderNumber} orderTime={order.date} clientName={order.nameClient} status={order.status}></OrderItemOpened>
+                <ButtonDefault text="Ver Pedido" color="primary" onClick={() => this.orderDelivered(order.orderNumber)}/>
+                </Card>
             })
           }
           <hr></hr>

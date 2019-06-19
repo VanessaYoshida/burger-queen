@@ -1,6 +1,4 @@
 import React, {Component} from 'react';
-import Card from '@material-ui/core/Card';
-import ButtonDefault from 'components/ui/Buttons/Default';
 import moment from 'moment';
 
 class OrderItemOpened extends Component {
@@ -26,19 +24,12 @@ class OrderItemOpened extends Component {
     })
   }
 
-  orderDelivered = () => {
-    console.log("Oi")
-  }
-
   render(){
     return(
       <>
-        <Card>
-          Pedido: {this.state.orderNumber} <br></br>
-          Nome do Cliente: {this.state.clientName} <br></br>
-          Tempo de Espera: {this.state.waitingTime} <br></br>
-          <ButtonDefault text="Ver Pedido" onClick={this.orderDelivered}/>
-        </Card>
+        <p>Pedido: {this.state.orderNumber} </p>
+        <p>Nome do Cliente: {this.state.clientName}</p>
+        <p>Tempo de Espera: {this.state.waitingTime} </p>
       </>
     )
   }
