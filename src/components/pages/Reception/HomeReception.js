@@ -1,44 +1,90 @@
-import React, {Fragment} from 'react';
+import React, {Component, Fragment} from 'react';
 import ButtonAppBar from 'components/ui/TopBar/ButtonAppBar';
 import firebase from 'components/util/config/firebaseConfig';
 import ButtonAddRequest from 'components/ui/Buttons/Add';
 import OrderItemClosed from 'components/ui/OrderItem/OrderItemClosed';
+import ButtonDefault from 'components/ui/Buttons/Default';
+import Card from '@material-ui/core/Card';
 import './reception.css';
 
-// const database = firebase.firestore();
+const database = firebase.firestore();
 const firebaseAppAuth = firebase.auth();
 
-const HomeReception = (props) => {
-  const addOrder = () => {
-    props.history.push(`/carrinho`);
+class HomeReception extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      ordersClosed: []
+    }
+    this.getOrders();
   }
 
-  // const getOrders = () => {
-  //   const OrderClosed = database.collection("cities").where("status", "===", "fechado");
-  // }
-  
-  const clickLogout = () => {
-    firebaseAppAuth.signOut().then(() => {
-      localStorage.removeItem('userName');
-      props.history.push(`/`);
+  addOrder = () => {
+    this.props.history.push(`/carrinho`);
+  }
+
+  getOrders = () => {
+    const ordersClosed = database.collection("orders").where("status", "==", "fechado").orderBy("orderNumber","asc");
+    ordersClosed.get().then((querySnapshot) => {
+      if (querySnapshot.docs.length > 0) {
+        let orders = [];
+        querySnapshot.forEach(function(doc) {
+          orders.push(doc.data())
+        });
+        this.setState({
+          ordersClosed: orders
+        })
+      }
     })
+    console.log(ordersClosed);
   }
   
-  return (
-    <Fragment>
-      <ButtonAppBar btnText="Sair" click={clickLogout}/>
-      <main className="Reception">
-        <header>
-          <ButtonAddRequest text="Novo Pedido" color="secondary" onClick={() => addOrder()}/>
-        </header>
-        <body>
-          <p><b>Pedidos Prontos</b></p>
-          <OrderItemClosed orderNumber="1" orderTime="19:07" waitingTime="10 min" clientName="Luffy" status="pronto"></OrderItemClosed>
-          <OrderItemClosed orderNumber="2" orderTime="19:08" waitingTime="11 min" clientName="Nami" status="pronto"></OrderItemClosed>
-        </body>  
-      </main>  
-    </Fragment>
-  );
+  clickLogout = () => {
+    firebaseAppAuth.signOut().then(() => {
+      localStorage.removeItem('userName');
+      this.props.history.push(`/`);
+    })
+  }
+
+  orderDelivered = (orderNumber) => {
+    localStorage.removeItem('orderNumber');
+    localStorage.setItem('orderNumber', orderNumber);
+    database.collection("orders")
+    .where("orderNumber", "==", parseInt(orderNumber))
+    .get()
+    .then(function(querySnapshot) {
+      querySnapshot.forEach(function(doc) {
+          console.log(doc.id, " => ", doc.data());
+          database.collection("orders").doc(doc.id).update({status: "entregue"});
+      });
+  })
+  alert("Pedido Entregue com sucesso.");
+  this.props.history.push("/salao");
+  }
+  
+  render() {
+    return (
+      <Fragment>
+        <ButtonAppBar btnText="Sair" click={this.clickLogout}/>
+        <main className="Reception">
+          <header>
+            <ButtonAddRequest text="Novo Pedido" color="secondary" onClick={() => this.addOrder}/>
+          </header>
+          <section>
+            <p><b>Pedidos Prontos</b></p>
+            {
+              this.state.ordersClosed.map((order) => {
+                return <Card key={order.orderNumber}>
+                  <OrderItemClosed orderNumber={order.orderNumber} orderTime={order.date} clientName={order.nameClient} status={order.status}></OrderItemClosed>
+                  <ButtonDefault text="Pedido Entregue" color="primary" onClick={() => this.orderDelivered(order.orderNumber)}/>
+                  </Card>
+              })
+            }
+          </section>  
+        </main>  
+      </Fragment>
+    );
+  }
 }
   
   export default HomeReception;

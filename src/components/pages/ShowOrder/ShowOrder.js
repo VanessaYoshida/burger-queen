@@ -51,6 +51,8 @@ class ShowOrder extends Component {
           database.collection("orders").doc(doc.id).update({status: "fechado"});
       });
   })
+  alert("Pedido Fechado com sucesso.");
+  this.props.history.push("/cozinha");
 }
   
   render(){
