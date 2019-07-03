@@ -8,6 +8,16 @@
   font-size: 16px;
 } 
 
+.card {
+  width: 350px;
+}
+
+.PageLogin {
+  background: url(./img/burger.jpg) no-repeat bottom center scroll;
+  background-position: 30% 45%;
+  background-size: cover;
+}
+
 .img-logo {
   position: relative;
   bottom: 0;

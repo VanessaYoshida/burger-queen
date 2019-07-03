@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import Card from '@material-ui/core/Card';
-import ButtonDefault from 'components/ui/Buttons/Default';
+import moment from 'moment';
 
 class OrderItemClosed extends Component {
   constructor(props) {
@@ -8,25 +7,29 @@ class OrderItemClosed extends Component {
     this.state = {
       orderNumber: props.orderNumber,
       orderTime: props.orderTime,
-      waitingTime: props.waitingTime,
+      waitingTime: "",
       clientName: props.clientName,
       status: props.status
     }
+    setInterval(() => {
+      this.tick();
+    }, 1000);
   }
 
-  orderDelivered = () => {
-    console.log("Oi")
+  tick = () => { 
+    let orderTime = this.state.orderTime;
+    let momentDate = moment(orderTime.toDate()).toNow(true);
+    this.setState({
+      waitingTime: momentDate
+    })
   }
 
   render(){
     return(
       <>
-        <Card>
-          Pedido: {this.state.orderNumber} <br></br>
-          Nome do Cliente: {this.state.clientName} <br></br>
-          Tempo de Espera: {this.state.waitingTime} <br></br>
-          <ButtonDefault text="Pedido Entregue" onClick={this.orderDelivered}/>
-        </Card>
+        <p>Pedido: {this.state.orderNumber}</p>
+        <p>Nome do Cliente: {this.state.clientName}</p>
+        <p>Tempo de Espera: {this.state.waitingTime}</p>
       </>
     )
   }

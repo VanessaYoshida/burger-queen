@@ -6,6 +6,7 @@ import ButtonDefault from 'components/ui/Buttons/Default';
 import Input from 'components/ui/Form/input';
 import logo from './img/Burger-Queen.png';
 import 'components/pages/Login/login.css';
+import Card from '@material-ui/core/Card';
 
 const firebaseAppAuth = firebase.auth();
 const database = firebase.firestore();
@@ -53,23 +54,25 @@ class Login extends Component {
   render() {
     const { email, password } = this.state;
     return (
-      <div className="PageLogin">      
+      <div className="PageLogin">  
+        <Card className="card">    
         <div>
-          <img src={logo} alt="img-logo" className="img-logo"/>   
+        <img src={logo} alt="img-logo" className="img-logo"/>   
         </div>
         <div className="input">
-          <Input text="E-mail" type="email" placeholder="E-mail"
-          value={email}
-          onChange={(e) => this.handleChange(e, "email")} />
-          <Input text="Senha" type="password" placeholder="Senha"
-          value={password}
-          onChange={(e) => this.handleChange(e, "password")}
-          />
-          <ButtonDefault text="Entrar" color="primary" onClick={this.signIn}/>
+        <Input text="E-mail" type="email" placeholder="E-mail"
+        value={email}
+        onChange={(e) => this.handleChange(e, "email")} />
+        <Input text="Senha" type="password" placeholder="Senha"
+        value={password}
+        onChange={(e) => this.handleChange(e, "password")}
+        />
+        <ButtonDefault text="Entrar" color="primary" onClick={this.signIn}/>
         </div>
         <div className="boxRegister">
-          <Link to="/cadastro" className="linkRegister"><span className="textRegister">Não tem conta?</span> Cadastre-se </Link>
+        <Link to="/cadastro" className="linkRegister"><span className="textRegister">Não tem conta?</span> Cadastre-se </Link>
         </div>
+        </Card>
       </div>
       )
     }
