@@ -2,7 +2,7 @@
 
 Nesse projeto o objetivo foi criar um App em React para uma Hamburgueria. Nela existem 2 tipos de cadastros, um deles é para o atendente e o outro para a pessoa que está na cozinha. Cada tipo de usuário pode ver só o que está dentro de sua função no restaurante.
 
-Link para acessar o site: [Link do APP](https://burger-queen-eba7f.firebaseapp.com)
+Link para acessar o site: [Burger Queen](https://burger-queen-eba7f.firebaseapp.com)
 
 ## Índice
 
