@@ -17,13 +17,20 @@ Link para acessar o site: [Burger Queen](https://burger-queen-eba7f.firebaseapp.
 * [Objetivos de Aprendizagem](#Objetivos-de-Aprendizagem)
 * [Histórias de Usuário implementadas](#Histórias-de-Usuário-implementadas)
 
-#Instalação
+## Instalação
 ```node
 
 > npm install
 > npm start
 
 ```
+
+# E-mail teste para acessar o App
+Usuário do Salão: laboratoria@gmail.com
+Senha: laboratoria
+
+Usuário da Cozinha: cozinha@gmail.com
+Senha: cozinha
 
 ## Resumo do Projeto
 Desta vez temos um projeto 100% por demanda. Um pequeno restaurante de hambúrgueres chamado Burger Queen, que está crescendo, necessita uma interface em que se possa realizar pedidos utilizando um tablet, e enviá-los para a cozinha para que sejam preparados de forma ordenada e eficiente. 
