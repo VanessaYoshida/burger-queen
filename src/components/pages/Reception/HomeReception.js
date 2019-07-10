@@ -36,7 +36,6 @@ class HomeReception extends Component {
         })
       }
     })
-    console.log(ordersClosed);
   }
   
   clickLogout = () => {
@@ -68,16 +67,16 @@ class HomeReception extends Component {
         <ButtonAppBar btnText="Sair" click={this.clickLogout}/>
         <main className="Reception">
           <header>
-            <ButtonAddRequest text="Novo Pedido" color="secondary" onClick={() => this.addOrder}/>
+            <ButtonAddRequest text="Novo Pedido" color="secondary" onClick={() => this.addOrder()}/>
           </header>
           <section>
             <p><b>Pedidos Prontos</b></p>
             {
-              this.state.ordersClosed.map((order) => {
-                return <Card key={order.orderNumber}>
+              this.state.ordersClosed.map((order, index) => {
+                return <div key={order.orderNumber}><Card>
                   <OrderItemClosed orderNumber={order.orderNumber} orderTime={order.date} clientName={order.nameClient} status={order.status}></OrderItemClosed>
                   <ButtonDefault text="Pedido Entregue" color="primary" onClick={() => this.orderDelivered(order.orderNumber)}/>
-                  </Card>
+                  </Card></div>
               })
             }
           </section>  

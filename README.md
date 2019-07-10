@@ -2,6 +2,7 @@
 
 ## Índice
 
+* [Instalação](#Instalação)
 * [Resumo do Projeto](#Resumo-do-Projeto)
 * [Linguagem de programação](#Linguagem-de-programação)
 * [Autoria](#Autoria)
@@ -11,6 +12,14 @@
 * [Teste de Usabilidade](#Teste-de-usabilidade)
 * [Objetivos de Aprendizagem](#Objetivos-de-Aprendizagem)
 * [Histórias de Usuário implementadas](#Histórias-de-Usuário-implementadas)
+
+#Instalação
+```node
+
+> npm install
+> npm start
+
+```
 
 ## Resumo do Projeto
 Desta vez temos um projeto 100% por demanda. Um pequeno restaurante de hambúrgueres chamado Burger Queen, que está crescendo, necessita uma interface em que se possa realizar pedidos utilizando um tablet, e enviá-los para a cozinha para que sejam preparados de forma ordenada e eficiente. 

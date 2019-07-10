@@ -1,5 +1,5 @@
 {
-  "name": "burger-queen-class",
+  "name": "burger-queen",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -35,5 +35,24 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "description": "## Índice",
+  "main": "./public/index.html",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VanessaYoshida/burger-queen.git"
+  },
+  "keywords": [
+    "restaurante",
+    "burger",
+    "queen",
+    "lanches"
+  ],
+  "author": "Vanessa Yoshida",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/VanessaYoshida/burger-queen/issues"
+  },
+  "homepage": "https://github.com/VanessaYoshida/burger-queen#readme"
 }
