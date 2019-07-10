@@ -27,9 +27,13 @@ Link para acessar o site: [Burger Queen](https://burger-queen-eba7f.firebaseapp.
 
 # E-mail teste para acessar o App
 Usuário do Salão: laboratoria@gmail.com
+
 Senha: laboratoria
 
+---------------------------------------
+
 Usuário da Cozinha: cozinha@gmail.com
+
 Senha: cozinha
 
 ## Resumo do Projeto
