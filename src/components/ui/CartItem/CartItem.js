@@ -32,7 +32,7 @@ class CartItem extends Component {
 
   plus = () => {
     let newAmount = this.state.amount + 1;
-    let total = newAmount *this.state.value;
+    let total = newAmount * this.state.value;
     this.setState({
       amount: newAmount,
       total: total
